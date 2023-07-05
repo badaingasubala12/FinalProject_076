@@ -4,6 +4,7 @@ using namespace std;
 class bidangDatar {
 private:
     int x, y;
+
 public:
     bidangDatar() {
         x = 0;
@@ -19,76 +20,86 @@ public:
         this->x = a;
     }
 
+    void setY(int b) {
+        this->y = b;
+    }
+
     int getX() {
         return x;
+    }
+
+    int getY() {
+        return y;
     }
 };
 
 class Lingkaran : public bidangDatar {
-private:
-    float radius;
 public:
-    Lingkaran() : bidangDatar() {
-        radius = 0;
-    }
-
     void input() {
+        int radius;
         cout << "Masukkan jari-jari lingkaran: ";
         cin >> radius;
+        setX(radius);
     }
 
     float Luas(int a) {
+        float radius = getX();
         return 3.14 * radius * radius;
     }
 
     float Keliling(int a) {
+        float radius = getX();
         return 2 * 3.14 * radius;
     }
 
     void cekUkuran() {
-        if (radius == 0) {
-            cout << "Lingkaran belum diinputkan.\n";
+        float keliling = Keliling(0);
+        if (keliling > 40) {
+            cout << "Ukuran lingkaran: Besar" << endl;
         }
-        else {
-            cout << "Lingkaran dengan jari-jari " << radius << endl;
-            cout << "Luas: " << Luas(radius) << endl;
-            cout << "Keliling: " << Keliling(radius) << endl;
+        else if (keliling < 20) {
+            cout << "Ukuran lingkaran: Sedang" << endl;
+        }
+        else if (keliling < 10) {
+            cout << "Ukuran lingkaran: Kecil" << endl;
         }
     }
 };
 
 class Persegipanjang : public bidangDatar {
-private:
-    int panjang, lebar;
 public:
-    Persegipanjang() : bidangDatar() {
-        panjang = 0;
-        lebar = 0;
-    }
-
     void input() {
+        int panjang, lebar;
         cout << "Masukkan panjang persegipanjang: ";
         cin >> panjang;
         cout << "Masukkan lebar persegipanjang: ";
         cin >> lebar;
+        setX(panjang);
+        setY(lebar);
     }
 
     float Luas(int a) {
+        int panjang = getX();
+        int lebar = getY();
         return panjang * lebar;
     }
 
     float Keliling(int a) {
+        int panjang = getX();
+        int lebar = getY();
         return 2 * (panjang + lebar);
     }
 
     void cekUkuran() {
-        if (panjang == 0 || lebar == 0) {
-            cout << "Persegipanjang belum diinputkan.\n";
+        float keliling = Keliling(0);
+        if (keliling > 40) {
+            cout << "Ukuran persegi panjang: Besar" << endl;
         }
-        else {
-            cout << "Persegipanjang dengan panjang " << panjang << " dan lebar " << lebar << endl;
-            cout << "Luas: " << Luas(0) << endl;
-            cout << "Keliling: " << Keliling(0) << endl;
+        else if (keliling < 20) {
+            cout << "Ukuran persegi panjang: Sedang" << endl;
+        }
+        else if (keliling < 10) {
+            cout << "Ukuran persegi panjang: Kecil" << endl;
         }
     }
 };
@@ -107,7 +118,8 @@ int main() {
 
     if (pilihan == 1) {
         objek = &lingkaran;
-        return 0;
+        return  0;
     }
+
     
 
